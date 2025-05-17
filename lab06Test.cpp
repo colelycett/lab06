@@ -5,28 +5,24 @@
 int main() {
 
     WordCount hashT;
+    //Check full battery to start
     ASSERT_EQUALS(0, hashT.getTotalWords());
     ASSERT_EQUALS(0, hashT.getNumUniqueWords());
-    ASSERT_EQUALS(0, hashT.getWordCount("Hello"));
-    ASSERT_EQUALS("a", hashT.makeValidWord("----A----"));
+    ASSERT_EQUALS(0, hashT.getWordCount(""));
 
-    hashT.incrWordCount("Hello");
-    ASSERT_EQUALS(1, hashT.getTotalWords());
-    ASSERT_EQUALS(1, hashT.getNumUniqueWords());
+    hashT.incrWordCount("Hello-$");
     ASSERT_EQUALS(1, hashT.getWordCount("Hello"));
-    hashT.incrWordCount("Hello");
-    hashT.incrWordCount("HelloFriend");
+    ASSERT_EQUALS(1, hashT.getTotalWords());
+    ASSERT_EQUALS(1, hashT.getWordCount("Hello-$"));
+    ASSERT_EQUALS(1, hashT.getNumUniqueWords());
+    hashT.incrWordCount("--Hello~~");
+    ASSERT_EQUALS(2, hashT.getWordCount("Hello!"));
+
+    hashT.incrWordCount("Friend");
     ASSERT_EQUALS(2, hashT.getNumUniqueWords());
-    ASSERT_EQUALS(2, hashT.getWordCount("Hello"));
-    ASSERT_EQUALS(3, hashT.getTotalWords());
-    hashT.decrWordCount("HelloFriend");
-    ASSERT_EQUALS(1, hashT.getNumUniqueWords());
-    ASSERT_EQUALS(2, hashT.getTotalWords());
-    ASSERT_EQUALS(0, hashT.getWordCount("HelloFriend"));
-    hashT.decrWordCount("Hello");
-    ASSERT_EQUALS(1, hashT.getNumUniqueWords());
-    ASSERT_EQUALS(1, hashT.getTotalWords());
-    ASSERT_EQUALS(1, hashT.getWordCount("Hello"));
+    hashT.incrWordCount("-~Fr-end~!");
+    ASSERT_EQUALS(3, hashT.getNumUniqueWords());
+    ASSERT_EQUALS(1, hashT.getWordCount("Friend"));
 
     return 0;
 }

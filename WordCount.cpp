@@ -38,6 +38,7 @@ int WordCount::getNumUniqueWords() const {
 int WordCount::getWordCount(std::string word) const {
 	// STUB
 	std::string lookup_word = makeValidWord(word);
+	if (lookup_word == "") { return 0; }
 	int index = hash(lookup_word) % CAPACITY;
 	if (table[index].size() == 0) { return 0; }
 	else {
@@ -53,6 +54,7 @@ int WordCount::getWordCount(std::string word) const {
 int WordCount::incrWordCount(std::string word) {
 	
 	std::string lookup_word = makeValidWord(word);
+	if (lookup_word == "") { return 0; }
 	int index = hash(lookup_word) % CAPACITY;
 	if (table[index].size() == 0) {
 		table[index].push_back({lookup_word, 1});
@@ -61,12 +63,12 @@ int WordCount::incrWordCount(std::string word) {
 		for (size_t i = 0; i < table[index].size(); i++) {
 			if (table[index][i].first == lookup_word) {
 				table[index][i].second++;
-				return 0;
+				return table[index][i].second;
 			}
 		}
 		table[index].push_back({lookup_word, 1});
 	}
-	return 0;
+	return 1;
 }
 
 int WordCount::decrWordCount(std::string word) {
