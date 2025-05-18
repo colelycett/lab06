@@ -83,13 +83,13 @@ int WordCount::decrWordCount(std::string word) {
 				i->second--;
 				if (i->second == 0) {
 					table[index].erase(i);
+					return 0;
 				}
-				return 0;
+				return i->second;
 			}
 		}
 		return -1;
 	}
-	return 0;
 }
 
 bool WordCount::isWordChar(char c) {
