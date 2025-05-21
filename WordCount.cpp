@@ -2,8 +2,6 @@
 
 #include "WordCount.h"
 
-using namespace std;
-
 // Default constructor
 WordCount::WordCount() {}
 
